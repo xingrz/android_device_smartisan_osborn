@@ -24,3 +24,12 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+
+service sbinlogic_volume /sbin/logic_volume -m striped -r 2:3 -c 256
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+on boot
+    start sbinlogic_volume
