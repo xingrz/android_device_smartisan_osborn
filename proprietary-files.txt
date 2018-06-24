@@ -117,10 +117,10 @@ lib/libtt_panorama.so
 lib/sensors.hal.tof.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libchromaflash.so
-vendor/lib/libdualcameraddm.so
+vendor/lib/libdualcameraddm.so|ea8d5269c9bc27bf57903eaa9bd3d37c57939275
 vendor/lib/libedge_smooth_hvx_stub.so
 vendor/lib/libflash_pmic.so
-vendor/lib/libjni_dualcamera.so
+vendor/lib/libjni_dualcamera.so|c0980775231c16473f2618b1e9d03f00dabb175b
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
 vendor/lib/libjpegehw.so
