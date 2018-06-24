@@ -85,6 +85,7 @@ persist.media.treble_omx=false
 
 #property to enable narrow search range for video encoding
 vidc.enc.target_support_bframe=1
+video.disable.ubwc=1
 vendor.vidc.enc.disable_bframes=1
 vendor.vidc.dec.enable.downscalar=1
 
