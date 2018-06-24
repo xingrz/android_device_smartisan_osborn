@@ -60,15 +60,9 @@ on fs
     mount_all /vendor/etc/fstab.qcom
     swapon_all /vendor/etc/fstab.qcom
 
-    start time_daemon
-    check_fsghead
-
     # Keeping following partitions outside fstab file. As user may not have
     # these partition flashed on the device. Failure to mount any partition in fstab file
     # results in failure to launch late-start class.
-
-    wait /dev/block/bootdevice/by-name/cache
-    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
 
     wait /dev/block/bootdevice/by-name/persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev noatime barrier=1
@@ -77,17 +71,6 @@ on fs
     restorecon_recursive /persist
     write /sys/kernel/boot_adsp/boot 1
 
-    wait /dev/block/bootdevice/by-name/dsp
-    mount ext4 /dev/block/bootdevice/by-name/dsp /dsp ro nosuid nodev barrier=1
-
-    wait /dev/block/bootdevice/by-name/modem
-    mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0
-
-    wait /dev/block/bootdevice/by-name/bluetooth
-    mount vfat /dev/block/bootdevice/by-name/bluetooth /bt_firmware ro shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0
-
-    exec u:r:init_fsg:s0 -- /init.fsg.sh
-
 on post-fs
     start qseecomd
     exec - system system -- /vendor/bin/init.qti.qseecomd.sh
@@ -95,20 +78,16 @@ on post-fs
 
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
-    write /proc/sys/kernel/hung_task_timeout_secs 120
 
 on post-fs-data
     mkdir /data/tombstones/modem 0771 system system
     mkdir /data/tombstones/lpass 0771 system system
     mkdir /data/tombstones/wcnss 0771 system system
     mkdir /data/tombstones/dsps 0771 system system
-    mkdir /data/misc/hbtp 0750 system system
     mkdir /data/vendor/hbtp 0750 system system
     mkdir /persist/qti_fp 0700 system system
     mkdir /data/misc/seemp 0700 system system
     mkdir /data/misc/tloc 0700 system drmrpc
-    mkdir /data/misc/logd 0700 logd log
-    symlink /data/misc/logd /data/logs
 
 on boot
     start rmt_storage
@@ -117,19 +96,11 @@ on boot
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
 
-    mkdir /dev/cpuset/dex2oat
-    write /dev/cpuset/dex2oat/cpus 0-4
-    write /dev/cpuset/dex2oat/mems 0
-    chown system system /dev/cpuset/dex2oat
-    chown system system /dev/cpuset/dex2oat/tasks
-    chmod 0666 /dev/cpuset/dex2oat/tasks
-
-    write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/bg_3rd_app/cpus 2-3
-    write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-5
-    write /dev/cpuset/foreground/boost/cpus 0-5
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 0-7
+    write /dev/cpuset/background/cpus 0-7
+    write /dev/cpuset/system-background/cpus 0-7
     ####Regionalization config and prop files####
     chmod 0644 /persist/speccfg/spec
     chmod 0644 /persist/speccfg/devicetype
@@ -465,13 +436,10 @@ on property:init.svc.zygote=restarting
     stop ppd
 
 on charger
-    wait /dev/block/bootdevice/by-name/system
-    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
-    setprop sys.usb.configfs 0
+    load_system_props
     start qcom-post-boot
     start hvdcp_opti
     setprop sys.usb.configfs 1
-    start thermal-engine
     start power_off_alarm
 
 #

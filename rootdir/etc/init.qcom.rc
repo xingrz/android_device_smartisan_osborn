@@ -40,10 +40,6 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 root system
 
-    # Set permissions for dump partition
-    mkdir /klogdump 0777 root root
-    mkdir /ramdump 0777 root root
-
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
@@ -64,7 +60,7 @@ on early-boot
     # Allow subsystem (modem etc) debugging
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_cdsp/boot 1
-    #write /sys/kernel/boot_slpi/boot 1
+    write /sys/kernel/boot_slpi/boot 1
     exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
     chown root audio /sys/kernel/boot_adsp/boot
 
@@ -169,7 +165,7 @@ on boot
 
     # Set the console loglevel to < KERN_INFO
     # Set the default message loglevel to KERN_INFO
-    #write /proc/sys/kernel/printk "6 6 1 7"
+    write /proc/sys/kernel/printk "6 6 1 7"
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
@@ -404,9 +400,6 @@ on post-fs-data
     chown radio radio /data/vendor/radio/db_check_done
     chmod 0660 /data/vendor/radio/db_check_done
 
-    #wanjl set adsp subsys restart level
-    write /sys/bus/msm_subsys/devices/subsys2/restart_level SYSTEM
-
     # qti-logkit data
     mkdir /data/misc/qti-logkit/ 0771 system system
     mkdir /data/misc/qti-logkit/shared-privileged/ 2770 system system
@@ -434,12 +427,6 @@ on post-fs-data
 
     #Create FTM_AP dir for factory test
     mkdir /data/FTM_AP 0775 system system
-
-    mkdir /data/misc/logd 0700 logd log
-    symlink /data/misc/logd /data/logs
-
-    # WAPI
-    mkdir /data/misc/wapi_certificate 0770 system wifi
 
 service nqnfcinfo /system/vendor/bin/nqnfcinfo
     class late_start
@@ -718,7 +705,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -I/vendor/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/vendor/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
+    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 -dd \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
@@ -732,7 +719,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
 service vendor.wigig_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwigig0 -Dnl80211 -c/data/vendor/wifi/wigig_supplicant.conf \
     -m/data/vendor/wifi/wigig_p2p_supplicant.conf \
-    -O/data/vendor/wifi/wigig_sockets \
+    -O/data/vendor/wifi/wigig_sockets -dd \
     -e/data/vendor/wifi/wigig_entropy.bin -g@android:wpa_wigig0 \
     -S wigigsvc
     #   we will start as root and wpa_supplicant will switch to user wifi
@@ -1148,7 +1135,7 @@ service esepmdaemon /system/vendor/bin/esepmdaemon
     group nfc
 
 on charger
-    setprop persist.sys.usb.config charging,adb
+    setprop persist.sys.usb.config mass_storage
     load_system_props
     start qcom-post-boot
 
