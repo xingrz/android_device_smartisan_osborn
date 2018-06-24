@@ -218,10 +218,6 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service
 
-# FBE support
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/bin/init.qti.qseecomd.sh:system/bin/init.qti.qseecomd.sh
-
 # Fingerprint feature
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service
