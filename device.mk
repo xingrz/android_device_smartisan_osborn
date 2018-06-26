@@ -439,6 +439,10 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service \
     com.android.future.usb.accessory
 
+# Vendor public libraries
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
+
 # Vendor seccomp policy files for media components:
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp_policy/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
