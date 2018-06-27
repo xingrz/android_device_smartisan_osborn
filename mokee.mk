@@ -29,8 +29,6 @@ PRODUCT_BRAND := Smartisan
 PRODUCT_MODEL := OS105
 PRODUCT_MANUFACTURER := smartisan
 
-# Verity
+# Sign bootable images
 PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_SUPPORTS_VERITY := true
-PRODUCT_SUPPORTS_VERITY_FEC := true
-PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
+PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/testkey
