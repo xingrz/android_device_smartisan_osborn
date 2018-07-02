@@ -135,6 +135,10 @@ on boot
     chmod 0644 /sys/bus/platform/devices/soc:fpc1020/pinctl_set
     chown system system /sys/bus/platform/devices/soc:fpc1020/pinctl_set
 
+on property:sys.boot_completed=1
+    # Set BFQ I/O scheduler
+    setprop sys.io.scheduler "bfq"
+
 #Peripheral manager
 service per_mgr /system/vendor/bin/pm-service
     class core
