@@ -364,12 +364,6 @@ vendor/lib64/libvpplibrary.so
 vendor/bin/energy-awareness
 vendor/bin/msm_irqbalance
 
-# Peripheral manager
-vendor/bin/pm-proxy
-vendor/bin/pm-service
-vendor/lib/libperipheral_client.so
-vendor/lib64/libperipheral_client.so
-
 # Radio
 vendor/lib64/libsettings.so
 
