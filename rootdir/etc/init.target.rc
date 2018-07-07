@@ -135,6 +135,10 @@ on boot
     chmod 0644 /sys/bus/platform/devices/soc:fpc1020/pinctl_set
     chown system system /sys/bus/platform/devices/soc:fpc1020/pinctl_set
 
+    # Pocket Mode
+    chmod 0600 /proc/fingerprint/suspend
+    chown system system /proc/fingerprint/suspend
+
 on property:sys.boot_completed=1
     # Set BFQ I/O scheduler
     setprop sys.io.scheduler "bfq"
