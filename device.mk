@@ -402,7 +402,11 @@ PRODUCT_PACKAGES += \
     ims-ext-common \
     librmnetctl \
     libxml2 \
-    libprotobuf-cpp-full
+    libprotobuf-cpp-full \
+    qti-telephony-common
+
+PRODUCT_BOOT_JARS += \
+    qti-telephony-common
 
 # Sensors
 PRODUCT_PACKAGES += \
