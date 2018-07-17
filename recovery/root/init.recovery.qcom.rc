@@ -25,6 +25,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+on init
+    write /proc/sys/kernel/hung_task_timeout_secs 0
+
 on fs
     wait /dev/block/platform/soc/c0c4000.sdhci
     symlink /dev/block/platform/soc/c0c4000.sdhci /dev/block/bootdevice
