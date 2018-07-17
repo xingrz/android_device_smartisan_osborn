@@ -29,11 +29,5 @@ on fs
     wait /dev/block/platform/soc/c0c4000.sdhci
     symlink /dev/block/platform/soc/c0c4000.sdhci /dev/block/bootdevice
 
-service sbinlogic_volume /sbin/logic_volume -m striped -r 2:3 -c 256
-    disabled
-    user root
-    group root
-    seclabel u:r:recovery:s0
-
-on boot
-    start sbinlogic_volume
+    exec -- /sbin/logic_volume -m striped -r 2:3 -c 256
+    wait /dev/block/logic_data
