@@ -24,9 +24,9 @@ VENDOR=smartisan
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 
-MK_ROOT="$MY_DIR"/../../..
+LINEAGE_ROOT="$MY_DIR"/../../..
 
-HELPER="$MK_ROOT"/vendor/mk/build/tools/extract_utils.sh
+HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.sh
 if [ ! -f "$HELPER" ]; then
     echo "Unable to find helper script at $HELPER"
     exit 1
@@ -44,7 +44,7 @@ if [ -z "$SRC" ]; then
 fi
 
 # Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT" false "$CLEAN_VENDOR"
+setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false "$CLEAN_VENDOR"
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 extract "$MY_DIR"/proprietary-files-qc.txt "$SRC_QC" "$SECTION"
@@ -53,7 +53,7 @@ extract "$MY_DIR"/proprietary-files-qc-perf.txt "$SRC_QC" "$SECTION"
 function fix_fpc () {
     sed -i \
         's/\x00fpcfingerprint\x00/\x00fingerprint\x00\x00\x00\x00/' \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
+        "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
 }
 
 fix_fpc lib64/hw/fingerprint.fpc.so
@@ -61,7 +61,7 @@ fix_fpc lib64/hw/fingerprint.fpc.so
 function fix_goodix () {
     sed -i \
         's/\x00goodixfingerprint\x00/\x00fingerprint\x00\x00\x00\x00\x00\x00\x00/' \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
+        "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$1"
 }
 
 fix_goodix lib64/hw/fingerprint.goodix.so
@@ -69,7 +69,7 @@ fix_goodix lib64/hw/fingerprint.goodix.so
 function fix_vendor () {
     sed -i \
         "s/\/system\/$1\//\/vendor\/$1\//g" \
-        "$MK_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$2"
+        "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/"$2"
 }
 
 # Audio
