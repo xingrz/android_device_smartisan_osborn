@@ -229,6 +229,9 @@ TARGET_LD_SHIM_LIBS += /vendor/lib64/libril-qc-qmi-1.so|/system/lib64/libshim_ri
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_osborn
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
+# Root
+BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
