@@ -39,7 +39,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="osborn" \
     PRIVATE_BUILD_DESC="osborn-user 7.1.1 NGI77B 1 dev-keys"
 
-BUILD_FINGERPRINT := Android/osborn/osborn:7.1.1/NGI77B/1532679897:user/dev-keys
+BUILD_FINGERPRINT := Android/osborn/osborn:7.1.1/NGI77B/1534640972:user/dev-keys
 
 # Sign bootable images
 PRODUCT_SUPPORTS_BOOT_SIGNER := true
