@@ -14,6 +14,7 @@ vendor/lib64/vendor.qti.hardware.alarm@1.0.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
 vendor/lib/libqomx_jpegenc_pipe.so
+vendor/lib/libremosaic_daemon.so
 
 # CNE
 -priv-app/CNEService/CNEService.apk
