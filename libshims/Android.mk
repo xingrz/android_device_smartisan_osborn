@@ -30,4 +30,6 @@ LOCAL_MODULE := libshim_camera
 LOCAL_MODULE_TAGS := optional
 LOCAL_MULTILIB := 32
 
+LOCAL_VENDOR_MODULE := true
+
 include $(BUILD_SHARED_LIBRARY)

@@ -126,8 +126,8 @@ QCOM_BT_USE_SMD_TTY := true
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
-TARGET_LD_SHIM_LIBS += /vendor/lib/hw/camera.sdm660.so|/system/lib/libshim_camera.so
-TARGET_LD_SHIM_LIBS += /vendor/lib/libmmcamera_ppeiscore.so|/system/lib/libshim_camera.so
+TARGET_LD_SHIM_LIBS += /vendor/lib/hw/camera.sdm660.so|/vendor/lib/libshim_camera.so
+TARGET_LD_SHIM_LIBS += /vendor/lib/libmmcamera_ppeiscore.so|/vendor/lib/libshim_camera.so
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
