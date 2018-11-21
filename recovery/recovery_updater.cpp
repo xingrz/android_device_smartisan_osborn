@@ -184,7 +184,7 @@ Value *VerifyModemFn(const char *name, State *state,
         memset(&tm2, 0, sizeof(tm));
         strptime(modem_version.c_str(), "%Y-%m-%d %H:%M:%S", &tm2);
 
-        if (mktime(&tm1) >= mktime(&tm2)) {
+        if (mktime(&tm1) == mktime(&tm2)) {
             ret = 1;
             break;
         }
