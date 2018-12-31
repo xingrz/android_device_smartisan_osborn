@@ -2,5 +2,9 @@
   {
     "repository": "android_device_smartisan_sdm660-common",
     "target_path": "device/smartisan/sdm660-common"
+  },
+  {
+    "repository": "android_vendor_smartisan_osborn",
+    "target_path": "vendor/smartisan/osborn"
   }
 ]
