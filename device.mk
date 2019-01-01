@@ -21,5 +21,7 @@
 # definition file).
 #
 
+$(call inherit-product, vendor/smartisan/osborn/osborn-vendor.mk)
+
 # Inherit from sdm660-common
 $(call inherit-product, device/smartisan/sdm660-common/common.mk)
