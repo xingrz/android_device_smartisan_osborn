@@ -31,3 +31,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Releasetools
 TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+
+# inherit from the proprietary version
+-include vendor/smartisan/osborn/BoardConfigVendor.mk
