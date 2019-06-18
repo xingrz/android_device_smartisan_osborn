@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/mk_osborn.mk
+    $(LOCAL_DIR)/omni_osborn.mk
