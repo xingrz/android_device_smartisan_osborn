@@ -31,4 +31,4 @@ PRODUCT_MANUFACTURER := smartisan
 
 # Sign bootable images
 PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/testkey
+PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
