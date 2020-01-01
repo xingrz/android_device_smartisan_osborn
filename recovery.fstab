@@ -2,7 +2,7 @@
 /boot           emmc    /dev/block/bootdevice/by-name/boot
 /cache          ext4    /dev/block/bootdevice/by-name/cache
 /recovery       emmc    /dev/block/bootdevice/by-name/recovery      flags=backup=1
-/system         ext4    /dev/block/bootdevice/by-name/system
+/system_root    ext4    /dev/block/bootdevice/by-name/system        flags=display="System root"
 /system_image   emmc    /dev/block/bootdevice/by-name/system
 /misc           emmc    /dev/block/bootdevice/by-name/misc
 
@@ -29,3 +29,6 @@
 
 # Removable storage
 /usb-otg        vfat    /dev/block/sdd1         /dev/block/sdd      flags=storage;wipeingui;removable
+
+# APEX
+/apex/com.android.runtime     bind    /system/apex/com.android.runtime.release
